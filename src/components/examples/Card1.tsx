@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 
 // Przykładowy komponent Card1

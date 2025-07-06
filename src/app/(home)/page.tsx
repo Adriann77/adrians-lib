@@ -54,13 +54,30 @@ export default function Home() {
   ];
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800'>
+    <div className='min-h-screen bg-gray-800 text-white'>
       <div className='container mx-auto px-4 py-16'>
         <div className='text-center mb-16'>
-          <h1 className='text-5xl font-bold text-gray-900 dark:text-white mb-4'>
+          <h1 className='text-5xl font-bold  dark:text-white mb-4'>
             Adrian&apos;s Component Library
           </h1>
           <div className='flex flex-wrap items-center justify-center gap-4 '> 
+            {componentLibraries.map((library) => (
+              <div
+                key={library.name}
+                className={`mt-8 p-6 rounded-lg shadow-md flex w-[400px] h-[200px] flex-col ${library.color}`}
+              >
+                <h2 className='text-2xl font-bold text-white'>
+                  {library.name}
+                </h2>
+                <p className='mt-2 text-gray-200'>{library.description}</p>
+                <Link
+                  href={library.href}
+                  className='mt-4 inline-block text-white underline'
+                >
+                  Explore
+                </Link>
+              </div>
+          ))}
             {componentLibraries.map((library) => (
               <div
                 key={library.name}
