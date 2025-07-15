@@ -251,7 +251,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
         {/* Kontrolki nawigacyjne */}
         {(showNavigation || showDots) && (
           <div
-            className='flex items-center justify-center gap-6 mt-48'
+            className='flex items-center justify-center gap-6 mt-12'
             onMouseEnter={handleCardMouseEnter}
             onMouseLeave={handleCardMouseLeave}
             style={{ minHeight: 56 }}
