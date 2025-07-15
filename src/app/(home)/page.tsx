@@ -12,7 +12,7 @@ export default function Home() {
     {
       name: 'Carousels',
       description: 'Modern and animated React components for your next project',
-      href: '/aceternity',
+      href: '/carousels',
       color: 'bg-purple-600 hover:bg-purple-700 text-white',
     },
     {

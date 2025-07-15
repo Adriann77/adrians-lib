@@ -1,22 +1,65 @@
 'use client';
 import SectionWrapper from '@/components/SectionWrapper';
 import React, { useState } from 'react';
-
+import { cardCode3d } from '@/lib/constants';
 import Card1 from '@/components/examples/Card1';
+
+
+
 
 const cardsData = [
   {
     id: 'card1',
-    name: 'Simple Card',
-    description: 'Basic card with simple styling and button',
+    name: 'Acernity 3d Card',
+    description: 'floating card with 3D effect',
     component: Card1,
     category: 'Basic',
     tags: ['simple', 'basic', 'button'],
+    sourceCode: cardCode3d,
+  },
+  {
+    id: 'card1',
+    name: 'Acernity 3d Card',
+    description: 'floating card with 3D effect',
+    component: Card1,
+    category: 'Basic',
+    tags: ['simple', 'basic', 'button'],
+    sourceCode: cardCode3d,
+  },
+  {
+    id: 'card1',
+    name: 'Acernity 3d Card',
+    description: 'floating card with 3D effect',
+    component: Card1,
+    category: 'Basic',
+    tags: ['simple', 'basic', 'button'],
+    sourceCode: cardCode3d,
+  },
+  {
+    id: 'card1',
+    name: 'Acernity 3d Card',
+    description: 'floating card with 3D effect',
+    component: Card1,
+    category: 'Basic',
+    tags: ['simple', 'basic', 'button'],
+    sourceCode: cardCode3d,
+  },
+  {
+    id: 'card1',
+    name: 'Acernity 3d Card',
+    description: 'floating card with 3D effect',
+    component: Card1,
+    category: 'Basic',
+    tags: ['simple', 'basic', 'button'],
+    sourceCode: cardCode3d,
   },
 ];
 
 const Cards = () => {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
+
+
+  
 
   const getSelectedCardData = () => {
     return cardsData.find((card) => card.id === selectedCard) || null;
@@ -143,7 +186,7 @@ const Cards = () => {
                 </h3>
                 <div className='bg-gray-100 dark:bg-gray-900 rounded-lg p-4'>
                   <code className='text-sm text-gray-800 dark:text-gray-200'>
-                    {`<${selectedCardData.component.name} />`}
+                    {selectedCardData.sourceCode}
                   </code>
                 </div>
               </div>
