@@ -1,6 +1,6 @@
 'use client';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 /**
  * Interfejs dla pojedynczego slajdu w karuzeli
@@ -63,12 +63,12 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
   // Obliczenia podstawowe dla karuzeli
   const slidesCount = slides.length;
   const angleStep = 360 / slidesCount; // kąt między kartami
-
+  const cardRef = useRef<HTMLDivElement>(null);
   // Obliczenie kroku animacji na podstawie prędkości
   const rotationStep = autoRotationSpeed / 60; // stopnie na klatkę (60fps)
 
   // Stany komponentu
-  const [rotation, setRotation] = useState(0); // aktualny obrót w stopniach
+  const [rotation, setRotation] = useState(40); // aktualny obrót w stopniach
   const [mounted, setMounted] = useState(false); // czy komponent jest zamontowany (SSR)
   const [isPaused, setIsPaused] = useState(false); // czy auto-rotacja jest zapauzowana
   const [instant, setInstant] = useState(false); // czy wyłączyć animacje dla natychmiastowego snapu
@@ -181,13 +181,12 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
   };
 
   return (
-    <div className='w-full flex justify-center'>
-      <div className='relative max-w-[1280px] w-full flex flex-col items-center py-8'>
-        {/* Kontener karuzeli 3D */}
+    <div className='mx-auto   flex justify-center'>
+      <div className='relative  mx-auto   flex flex-col items-center py-8'>
         <div
-          className={`relative mx-auto flex items-center justify-center`}
+          className={`relative  flex items-center justify-center`}
           style={{
-            width: `${cardWidth * 2}px`,
+            width: `${cardWidth * 1.2}px`,
             height: `${cardHeight * 1.5}px`,
             perspective: '1600px',
           }}
@@ -207,16 +206,15 @@ const Carousel3D: React.FC<Carousel3DProps> = ({
               const angle = i * angleStep + rotation;
               const normalized = ((angle % 360) + 360) % 360;
 
-              // Sprawdzenie czy karta jest na środku (aktywna)
               const isCenter =
                 normalized < angleStep / 2 || normalized > 360 - angleStep / 2;
 
-              // Obliczenie pozycji X dla efektu gap
               const rad = (Math.PI / 180) * angle;
               const xGap = Math.sin(rad) * cardGap;
 
               return (
                 <div
+                  ref={cardRef}
                   key={slide.id}
                   className={`absolute left-1/2 top-1/2 flex items-center justify-center rounded-lg shadow-2xl backface-hidden ${slide.bgColor}`}
                   style={{

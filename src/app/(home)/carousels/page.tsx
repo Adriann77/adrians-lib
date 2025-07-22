@@ -30,7 +30,7 @@ const CarouselsPage = () => {
 
   return (
     <SectionWrapper>
-      <div className='space-y-12 mt-16'>
+      <div className='space-y-12 mt-36 min-h-screen '>
         {/* Panel kontrolny */}
         <div className='bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700'>
           <h2 className='text-2xl font-bold text-center mb-6 text-white'>
