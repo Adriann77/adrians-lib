@@ -8,50 +8,71 @@ const Animation1 = () => {
   const slonikRef = useRef<HTMLDivElement>(null);
   const eyeRef = useRef<HTMLDivElement>(null);
   const uchoRef = useRef<HTMLDivElement>(null);
-  const [runAnimation, setRunAnimation] = React.useState(true);
+
+  const tl = gsap.timeline();
 
   useGSAP(() => {
     if (slonikRef.current && eyeRef.current && uchoRef.current) {
-      // Początkowe pojawienie się całego słonika
-      gsap.fromTo(
-        slonikRef.current,
-        { scale: 0.3, opacity: 0.3 },
-        { scale: 1, opacity: 1, duration: 3, ease: 'power2.out' },
-      );
-
-      // Mruganie oka
-      gsap.to(eyeRef.current, {
-        scaleY: 0.1, // zamyka oko
-        duration: 0.2, // czas zamykania
+      tl.to(eyeRef.current, {
+        scaleY: 0.1,
+        duration: 0.1,
         ease: 'power2.out',
-        yoyo: true, // wraca do normalnego scaleY:1
-        repeat: -1, // nieskończona pętla
-        repeatDelay: 1.1, // po powrocie czeka 1.1 sekundy => cykl co ok. 1.3s
+      })
+        .to(eyeRef.current, {
+          scaleY: 1,
+          duration: 0.1,
+          ease: 'power2.out',
+        })
+        .to(eyeRef.current, {
+          duration: 2.8,
+        });
+
+      tl.repeat(-1);
+    }
+  }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: 3.1,
+    });
+
+    if (uchoRef.current) {
+      tl.to(uchoRef.current, {
+        scaleX: 0.95,
+        duration: 0.2,
+        ease: 'power2.in',
       });
-
-      // Machanie uchem
-      gsap.to(uchoRef.current, {
-        rotateX: 3, // lekkie wychylenie
-        scaleX: 0.9, // lekki efekt powiększenia
-
-        duration: 0.1, // czas machnięcia
-        ease: 'power2.out',
-        yoyo: true, // powrót do pozycji wyjściowej
-        repeat: -1, // nieskończona pętla
-        repeatDelay: 1.1, // po powrocie czeka 1.1s => cykl co ok. 2.1s
+      tl.to(uchoRef.current, {
+        scaleX: 1.05,
+        duration: 0.2,
+        ease: 'power2.in',
+      });
+      tl.to(uchoRef.current, {
+        scaleX: 0.95,
+        duration: 0.2,
+        ease: 'power2.in',
+      });
+      tl.to(uchoRef.current, {
+        scaleX: 1.05,
+        duration: 0.2,
+        ease: 'power2.in',
+      });
+      tl.to(uchoRef.current, {
+        scaleX: 0.95,
+        duration: 0.2,
+        ease: 'power2.in',
+      });
+      tl.to(uchoRef.current, {
+        scaleX: 1,
+        duration: 0.2,
+        ease: 'power2.in',
       });
     }
   }, []);
 
   return (
     <div className='flex items-center'>
-      <button
-        className='bg-blue-500 text-2xl text-white p-4 h-fit rounded-lg hover:bg-blue-600'
-        onClick={() => setRunAnimation(!runAnimation)}
-      >
-        Run animation
-      </button>
-
       <div
         ref={slonikRef}
         className='relative w-[500px] h-[500px] flex items-center justify-center'
